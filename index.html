@@ -2,14 +2,14 @@
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#d62839"><meta name="apple-mobile-web-app-capable" content="yes">
-<title>Italia Norte · Diario de ruta</title>
+<title>MO en Italia Norte</title>
 <style>
 :root{--r:#d62839;--rd:#a61b2b;--rl:#fff0f1;--g:#1f9d55;--gl:#e8f8ef;--a:#f5a623;--al:#fff6e0;--t:#1d1d1f;--m:#6b6b73;--l:#eee}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:#fff;color:var(--t);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
 header{position:sticky;top:0;z-index:5;background:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 8px;border-bottom:1px solid var(--l)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
-h1{font-size:19px;margin:0;font-weight:900}h1 b{color:var(--r)}
+h1{font-size:17px;margin:0;font-weight:900;line-height:1.15}h1 b{color:var(--r)}
 .lv{background:var(--al);color:#9a6200;font-weight:800;font-size:12px;padding:5px 10px;border-radius:99px;white-space:nowrap}
 .bar{height:8px;background:var(--l);border-radius:9px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),#5fd68d);transition:width .5s}
 .tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
@@ -44,14 +44,14 @@ textarea.show{display:block}textarea:focus{outline:0;border-color:var(--a)}
 .cf{position:fixed;z-index:30;pointer-events:none;font-size:24px}
 footer{text-align:center;font-size:12px;color:var(--m);padding:6px 14px 24px}
 </style></head><body>
-<header><div class="row"><h1>Italia <b>Norte</b> 🇮🇹</h1><span class="lv" id="lv"></span></div><div class="bar"><i id="pb"></i></div></header>
+<header><div class="row"><h1>MO en Italia <b>Norte</b> 🇮🇹</h1><span class="lv" id="lv"></span></div><div class="bar"><i id="pb"></i></div></header>
 <nav class="tabs" id="tabs"></nav><div id="hero"></div><main class="list" id="list"></main>
 <footer>Fotos y texto ampliado: Wikipedia (necesita conexión). Tus checks y notas se guardan en este móvil.</footer>
 <div id="ov"></div><div id="sh"></div>
 <script>
 const D=[
 {c:'Bérgamo',e:'🏰',t:'Tarde en Bérgamo Alta',h:'12:00–21:00',q:'Città Alta Bergamo',s:`
-12:00|L|Llegada a BGY y alojamiento||Taxi ~25–35 € hasta Via Mario Lupo 6. Instalación 30 min.
+12:00|L|🚕 Aeropuerto BGY → Bérgamo Alta|Città Alta Bergamo|Taxi (~25–35 €) hasta vuestro alojamiento en Via Mario Lupo 6. Instalación 30 min.
 13:00|C|Almuerzo en Via Gombito|Pizza al taglio|Antiguo Decumanus Maximus romano. Pizza al taglio ~10 €/p.
 13:15|I|Torre del Gombito|Torre del Gombito Bergamo|Torre defensiva del s. XI, 52 m. Fachada gratis; terraza con reserva en la oficina de turismo.
 13:45|O|Palazzo Moroni|Palazzo Moroni Bergamo|Palacio barroco con frescos y jardines en terrazas. Vie–dom 10–18 h, ~10–12 €, reserva online.
@@ -66,7 +66,7 @@ const D=[
 20:00|C|Cena: casoncelli|Casoncelli|Trattoria Da Mimmo (o similar) en Via Colleoni. ~30 €/p. Regreso a Via Mario Lupo 6 (350 m).
 `},
 {c:'Milán',e:'🏙️',t:'Milán monumental y Navigli',h:'11:00–21:00',q:'Milano',s:`
-11:00|L|Tren a Milano Centrale|| Taxi al alojamiento en Via San Paolo 13 (~12–18 €). Instalación.
+11:00|L|🚆 Bérgamo → Milán|Milano Centrale|Tren hasta Milano Centrale y luego taxi (~12–18 €) al alojamiento en Via San Paolo 13. Instalación.
 13:00|C|Panzerotti de Luini|Panzerotto|Via Radegonda 16, o pizza al taglio. ~8–10 €/p.
 13:30|I|Duomo di Milano y terrazas|Duomo di Milano|Gótico flamígero, 135 agujas y la Madonnina dorada. Empezó en 1386. 09–19 h, ~22 € combo, reserva online.
 15:00|I|Galleria Vittorio Emanuele II|Galleria Vittorio Emanuele II|El salón de Milán (1865–77), cúpula de hierro y cristal. Dad 3 vueltas sobre el toro para la suerte. Libre.
@@ -78,21 +78,22 @@ const D=[
 20:00|C|Cena junto al Naviglio|Risotto alla milanese|Risotto alla milanese o cotoletta. ~30 €/p. Vuelta en metro o paseo.
 `},
 {c:'Como',e:'⛵',t:'Lago de Como en barco',h:'09:00–21:00',q:'Lago di Como',s:`
-09:00|L|Coche de alquiler y A9 a Como||Recogida en Milano Centrale, ~45 min. Check-in con parking y paseo al embarcadero de Piazza Cavour.
-11:30|I|Ferry rápido a Tremezzo|Lago di Como|Hidrofoil entre villas históricas. ~14,80 €/p.
+09:00|L|🚗 Milán → Como|Como Lombardia ciudad|Recogida del coche de alquiler en Milano Centrale y A9 (~45 min). Check-in con parking y paseo al embarcadero de Piazza Cavour.
+11:30|L|⛴️ BARCO: Como → Tremezzo|Tremezzo|Desde el embarcadero de Piazza Cavour: hidrofoil (Servizio Rapido) entre villas históricas, ~50 min. ~14,80 €/p.
 12:20|I|Villa Carlotta|Villa Carlotta|Villa neoclásica, 8 ha de jardines y esculturas de Canova. 10–19 h, ~15 € (~8 € adolescentes).
 13:30|C|Almuerzo en el muelle de Tremezzo|Panino|Algo ligero junto al lago. ~10 €/p.
-14:15|O|Villa del Balbianello|Villa del Balbianello|Villa del XVIII en una península; salió en Star Wars y James Bond. ~12 €, reserva imprescindible.
-14:45|I|Bellagio, la perla del lago|Bellagio|Escalinatas de Salita Serbelloni, seda artesana y mirador de Punta Spartivento. Ferry de cruce ~4,60 €.
-17:30|I|Ferry de regreso al atardecer|Nesso Lago di Como|Barco tradicional por Nesso y Torno. ~10,40 €/p. Hora dorada.
+14:15|O|Villa del Balbianello|Villa del Balbianello|Villa del XVIII en una península; salió en Star Wars y James Bond. Se llega en taxi acuático 🚤 desde Tremezzo. ~12 €, reserva imprescindible.
+14:30|L|⛴️ BARCO: Tremezzo → Bellagio|Bellagio lago|Ferry de cruce por el lago, ~15 min. ~4,60 €/p.
+14:45|I|Bellagio, la perla del lago|Bellagio|Escalinatas de Salita Serbelloni, seda artesana y mirador de Punta Spartivento.
+17:30|I|⛴️ BARCO: Bellagio → Como (atardecer)|Nesso Lago di Como|Battello ordinario: navegación lenta por Nesso y Torno. ~10,40 €/p. Hora dorada.
 19:30|I|Duomo di Como|Duomo di Como|Templo gótico-renacentista de mármol blanco (exterior).
 20:00|C|Cena en el casco antiguo|Polenta concia|Risotto con persico o polenta concia. ~30 €/p.
 `},
 {c:'Verona',e:'💘',t:'Sirmione y Verona',h:'10:00–21:00',q:'Verona',s:`
-10:00|L|Coche Como → Sirmione||A4, ~150 km (≈1 h 45).
+10:00|L|🚗 Como → Sirmione|Sirmione|Coche por la A4, ~150 km (≈1 h 45).
 11:45|I|Sirmione y Castello Scaligero|Rocca Scaligera Sirmione|Fortaleza del s. XIV rodeada por el Garda. Exterior libre, interior ~6 €. Comida al paso ~10–12 €/p.
 13:15|O|Grotte di Catullo|Grotte di Catullo|Enorme villa romana sobre el lago. ~8 €.
-14:30|L|Llegada a Verona||40 min. Alojamiento en Piazza Santa Anastasia; ojo con la ZTL (o Parcheggio Isolo).
+14:30|L|🚗 Sirmione → Verona|Piazza Bra Verona|Coche, ~35 km (40 min). Alojamiento en Piazza Santa Anastasia; ojo con la ZTL (o aparcad en Parcheggio Isolo). Check-in.
 15:30|I|Iglesia de Santa Anastasia|Basilica di Sant'Anastasia Verona|Gótico dominico con el San Jorge de Pisanello. ~4 €.
 16:00|I|Arche Scaligere y Piazza dei Signori|Arche scaligere|Tumbas góticas de los señores de Verona (Cangrande I) con rejas de escaleras.
 16:45|I|Piazza delle Erbe y Casa de Julieta|Casa di Giulietta|Antiguo foro romano y torre dei Lamberti. Patio del balcón ~2 €, reserva online obligatoria.
@@ -102,11 +103,13 @@ const D=[
 20:00|C|Cena en una osteria|Bigoli|Risotto all'Amarone o bigoli con pato. ~30 €/p.
 `},
 {c:'Padua → Venecia',e:'🚤',t:'Padua y llegada a Venecia',h:'10:00–21:00',q:'Venezia',s:`
-10:00|L|Coche Verona → Padua||A4, ~85 km (50 min).
+10:00|L|🚗 Verona → Padua|Prato della Valle|Coche por la A4, ~85 km (50 min). Aparcamiento en Prato della Valle.
 10:50|I|Prato della Valle y Basílica de San Antonio|Basilica di Sant'Antonio Padova|Plaza elíptica con 78 estatuas y el Santo con relieves de Donatello. Gratis.
 12:00|O|Capilla de los Scrovegni|Cappella degli Scrovegni|Frescos de Giotto (1303–05), cumbre del arte occidental. ~15 €, reserva con semanas de antelación.
 13:15|C|Almuerzo en Padua|Tramezzino|Tramezzino y Spritz paduano. ~10 €/p.
-14:30|L|Devolver coche y a Venecia||Entrega en Mestre; tren a Santa Lucia (~1,45 €) y vaporetto línea 1 a San Zaccaria (~9,50 €). Check-in cerca de San Marco.
+14:30|L|🚗 Padua → Venezia Mestre|Stazione di Venezia Mestre|Última conducción por la A4 y entrega del coche de alquiler en Mestre (así evitáis peajes y atascos).
+15:00|L|🚆 Mestre → Venezia Santa Lucia|Stazione di Venezia Santa Lucia|Tren regional de ~10 min. ~1,45 €/p.
+15:15|L|⛴️ BARCO: vaporetto línea 1 por el Gran Canal|Canal Grande Venezia|Desde Santa Lucia hasta San Zaccaria / San Marco, ~9,50 €/p. Después, check-in cerca de San Marco (hacia las 16:00).
 16:30|I|Piazza San Marco y Puente de los Suspiros|Piazza San Marco|Basílica, Campanile y Palazzo Ducale; luego el Ponte dei Sospiri.
 18:00|I|Rialto al atardecer|Ponte di Rialto|Callejeo por las calli y puesta de sol desde el puente de piedra.
 20:00|C|Cena veneciana|Risotto al nero di seppia|Bigoli in salsa o risotto al nero di seppia. ~30 €/p.
@@ -125,13 +128,14 @@ const D=[
 20:00|C|Cena en San Polo o Cannaregio|Fegato alla veneziana|Risotto al nero di seppia o fegato alla veneziana. ~30 €/p.
 `},
 {c:'Despedida',e:'✈️',t:'Mañana de despedida',h:'08:30–14:00',q:'Venezia',s:`
-08:30|O|Opción A: Murano|Murano|Los hornos de vidrio se trasladaron aquí en 1291. Demo en una fornace. Vaporetto desde San Zaccaria; vuelta 12:30.
+08:30|L|⛴️ BARCO: San Zaccaria → Murano (Opción A)|Isola di Murano|Vaporetto desde la parada de San Zaccaria a las 08:30. Regreso a San Marco a las 12:30.
+08:30|O|Opción A: Murano, el cristal inmortal|Vidrio de Murano|Los hornos de vidrio se trasladaron aquí en 1291. Visita a una fornace con demostración en vivo.
 09:00|I|Opción B: Scala Contarini del Bovolo|Scala Contarini del Bovolo|Escalera de caracol gótico-renacentista con vistas a los tejados. ~8 €.
 09:45|I|Riva degli Schiavoni y Arsenale|Arsenale di Venezia|Arsenal naval más grande del s. XVI: montaba una galera en un día.
 12:30|C|Tramezzini de despedida|Tramezzino|Cerca de San Marco. ~10 €/p.
-14:00|L|Alilaguna al aeropuerto VCE||Línea Azul desde San Zaccaria, ~75 min, ~15 €/p. Recoged maletas antes (13:15).
+14:00|L|⛴️ BARCO: Alilaguna → Aeropuerto VCE|Aeropuerto de Venecia-Marco Polo|Línea Azul desde el muelle de San Zaccaria, ~75 min, ~15 €/p (o taxi acuático privado). Recoged las maletas antes (13:15).
 `}];
-const T={I:['🔥','Ineludible'],O:['⭐','Opcional'],C:['🍽️','Comer'],L:['🚆','Logística']},XP={I:10,O:5,C:3,L:1},
+const T={I:['🔥','Ineludible'],O:['⭐','Opcional'],C:['🍽️','Comer'],L:['🧭','Logística']},XP={I:10,O:5,C:3,L:1},
 LV=[[0,'🐣 Turista'],[80,'🧭 Explorador'],[200,'🗺️ Viajero'],[350,'👑 Leyenda']];
 let S={v:{},n:{},d:0};try{Object.assign(S,JSON.parse(localStorage.getItem('it26')||'{}'))}catch(e){}
 const save=()=>{try{localStorage.setItem('it26',JSON.stringify(S))}catch(e){}},$=i=>document.getElementById(i);
