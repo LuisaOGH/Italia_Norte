@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#d62839"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Italia Norte · Diario de ruta</title>
+<style>
+:root{--r:#d62839;--rd:#a61b2b;--rl:#fff0f1;--g:#1f9d55;--gl:#e8f8ef;--a:#f5a623;--al:#fff6e0;--t:#1d1d1f;--m:#6b6b73;--l:#eee}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#fff;color:var(--t);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+header{position:sticky;top:0;z-index:5;background:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 8px;border-bottom:1px solid var(--l)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+h1{font-size:19px;margin:0;font-weight:900}h1 b{color:var(--r)}
+.lv{background:var(--al);color:#9a6200;font-weight:800;font-size:12px;padding:5px 10px;border-radius:99px;white-space:nowrap}
+.bar{height:8px;background:var(--l);border-radius:9px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),#5fd68d);transition:width .5s}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:2px solid var(--l);background:#fff;border-radius:16px;padding:6px 12px;text-align:center;font-weight:800;font-size:13px;color:var(--m)}
+.tab small{display:block;font-size:11px;font-weight:600}.tab.on{background:var(--r);border-color:var(--r);color:#fff}.tab.ok{border-color:var(--g)}
+.hero{margin:0 14px;border-radius:22px;color:#fff;padding:18px 16px;background:linear-gradient(135deg,var(--r),var(--rd)) center/cover;position:relative;overflow:hidden;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(120,10,25,.85),rgba(120,10,25,.15))}
+.hero>*{position:relative}.hero h2{margin:0;font-size:24px;font-weight:900}.hero p{margin:2px 0 0;font-size:13px;opacity:.95}
+.chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.chips span{background:rgba(255,255,255,.22);padding:3px 9px;border-radius:99px;font-size:12px;font-weight:700}
+.list{padding:14px}
+.card{border:1px solid var(--l);border-radius:20px;margin-bottom:14px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.05);border-left:6px solid var(--r);transition:.3s}
+.card.o{border-left-color:var(--a)}.card.c{border-left-color:var(--g)}.card.l{border-left-color:#c9c9d0}
+.card.done{background:var(--gl);border-color:var(--g);border-left-color:var(--g)}
+.ph{height:150px;background:linear-gradient(135deg,var(--rl),var(--al)) center/cover;display:flex;align-items:center;justify-content:center;font-size:44px}
+.card.c .ph{background-color:var(--gl)}.done .ph{filter:saturate(.7)}
+.bd{padding:12px 14px 14px}.tm{font-size:12px;font-weight:800;color:var(--m)}
+h3{margin:2px 0 6px;font-size:18px;line-height:1.2}.done h3{text-decoration:line-through;text-decoration-color:var(--g)}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:99px;background:var(--rl);color:var(--rd)}
+.o .tag{background:var(--al);color:#9a6200}.c .tag{background:var(--gl);color:#13693a}.l .tag{background:#f1f1f4;color:var(--m)}
+.bd p{margin:8px 0 10px;font-size:14.5px;color:#3a3a40}
+.act{display:flex;gap:8px}.act button{flex:1;border:0;border-radius:14px;padding:10px 6px;font:800 13.5px inherit;background:#f3f3f6;color:var(--t)}
+.act .v{background:var(--r);color:#fff;flex:1.4}.done .act .v{background:var(--g)}.act .i{background:var(--al);color:#9a6200}
+textarea{display:none;width:100%;margin-top:10px;border:2px solid var(--l);border-radius:14px;padding:10px;font:15px inherit;min-height:80px;resize:vertical}
+textarea.show{display:block}textarea:focus{outline:0;border-color:var(--a)}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:20}#ov.on{display:block}
+#sh{position:fixed;left:0;right:0;bottom:0;max-height:90vh;overflow:auto;background:#fff;border-radius:26px 26px 0 0;z-index:21;transform:translateY(105%);transition:.35s;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+#sh.on{transform:none}#sh .ph{height:210px;border-radius:26px 26px 0 0}
+#sh .bd{padding:16px 18px}#sh h3{font-size:22px}.x{position:absolute;right:12px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:#fff;font-size:18px;font-weight:900;box-shadow:0 2px 8px #0003}
+.wk{white-space:pre-line;font-size:15.5px;line-height:1.6;color:#2a2a30}.sub{font-weight:900;color:var(--r);margin:16px 0 6px;font-size:14px;text-transform:uppercase;letter-spacing:.5px}
+.lk{display:flex;gap:8px;margin-top:14px}.lk a{flex:1;text-align:center;text-decoration:none;font-weight:800;font-size:14px;padding:11px;border-radius:14px;background:var(--gl);color:#13693a}.lk a:first-child{background:var(--rl);color:var(--rd)}
+.cr{font-size:11px;color:var(--m);margin-top:8px}
+.cf{position:fixed;z-index:30;pointer-events:none;font-size:24px}
+footer{text-align:center;font-size:12px;color:var(--m);padding:6px 14px 24px}
+</style></head><body>
+<header><div class="row"><h1>Italia <b>Norte</b> 🇮🇹</h1><span class="lv" id="lv"></span></div><div class="bar"><i id="pb"></i></div></header>
+<nav class="tabs" id="tabs"></nav><div id="hero"></div><main class="list" id="list"></main>
+<footer>Fotos y texto ampliado: Wikipedia (necesita conexión). Tus checks y notas se guardan en este móvil.</footer>
+<div id="ov"></div><div id="sh"></div>
+<script>
+const D=[
+{c:'Bérgamo',e:'🏰',t:'Tarde en Bérgamo Alta',h:'12:00–21:00',q:'Città Alta Bergamo',s:`
+12:00|L|Llegada a BGY y alojamiento||Taxi ~25–35 € hasta Via Mario Lupo 6. Instalación 30 min.
+13:00|C|Almuerzo en Via Gombito|Pizza al taglio|Antiguo Decumanus Maximus romano. Pizza al taglio ~10 €/p.
+13:15|I|Torre del Gombito|Torre del Gombito Bergamo|Torre defensiva del s. XI, 52 m. Fachada gratis; terraza con reserva en la oficina de turismo.
+13:45|O|Palazzo Moroni|Palazzo Moroni Bergamo|Palacio barroco con frescos y jardines en terrazas. Vie–dom 10–18 h, ~10–12 €, reserva online.
+14:20|I|Palazzo della Ragione|Palazzo della Ragione Bergamo|Ayuntamiento más antiguo de Lombardía (s. XII). León de San Marcos y meridiano solar. Pórtico libre; sala ~5 €.
+14:40|I|Il Campanone|Torre Civica Bergamo|Torre de 52 m con la campana mayor de Lombardía: suena 100 veces cada noche a las 22:00. ~5 € con museo. Junto a la Fontana Contarini (1780).
+15:10|I|Basílica de Santa Maria Maggiore|Basilica di Santa Maria Maggiore Bergamo|Románico lombardo por fuera, estuco y oro por dentro. Tumba de Donizetti. ~5 €.
+15:20|I|Capilla Colleoni|Cappella Colleoni|Mausoleo renacentista (1472–76) de mármol blanco, rojo y negro. Entrada gratis; cierra lunes.
+15:35|O|Museo Civico Archeologico|Museo Civico Archeologico Bergamo|Bérgamo celta, romana y lombarda en Piazza Cittadella. ~3–5 €, sin reserva.
+16:20|I|Colle Aperto y funicular|Colle Aperto Bergamo|Punto débil de la ciudad, blindado por Venecia. Subid andando 20 min o funicular (~1,70 €).
+16:40|I|Castello di San Vigilio|Castello di San Vigilio Bergamo|A 496 m, el punto más alto de Bérgamo. Vistas a los Alpes y la llanura del Po: ¡el sitio del atardecer! Gratis, 08–20 h.
+18:30|I|Mura Veneziane (UNESCO)|Mura veneziane di Bergamo|Murallas del s. XVI, 5 km y 14 baluartes. Paseo libre 24 h.
+20:00|C|Cena: casoncelli|Casoncelli|Trattoria Da Mimmo (o similar) en Via Colleoni. ~30 €/p. Regreso a Via Mario Lupo 6 (350 m).
+`},
+{c:'Milán',e:'🏙️',t:'Milán monumental y Navigli',h:'11:00–21:00',q:'Milano',s:`
+11:00|L|Tren a Milano Centrale|| Taxi al alojamiento en Via San Paolo 13 (~12–18 €). Instalación.
+13:00|C|Panzerotti de Luini|Panzerotto|Via Radegonda 16, o pizza al taglio. ~8–10 €/p.
+13:30|I|Duomo di Milano y terrazas|Duomo di Milano|Gótico flamígero, 135 agujas y la Madonnina dorada. Empezó en 1386. 09–19 h, ~22 € combo, reserva online.
+15:00|I|Galleria Vittorio Emanuele II|Galleria Vittorio Emanuele II|El salón de Milán (1865–77), cúpula de hierro y cristal. Dad 3 vueltas sobre el toro para la suerte. Libre.
+15:45|I|Teatro alla Scala|Teatro alla Scala|Templo mundial de la ópera (1778). Exterior libre; museo 10–18 h, ~12 €.
+16:30|O|Quadrilatero / Pinacoteca di Brera|Pinacoteca di Brera|Calles de la alta costura o arte de Rafael y Caravaggio. Pinacoteca ~15 €, reserva.
+17:15|I|Castello Sforzesco|Castello Sforzesco|Fortaleza de los Sforza donde trabajó Leonardo. Torre del Filarete. Patios gratis 07–19:30; museos ~5 €.
+18:00|I|Parco Sempione y Arco della Pace|Arco della Pace|Pulmón verde que termina en el arco napoleónico.
+18:45|I|Navigli y Vicolo dei Lavandai|Navigli Milano|Canales con esclusas de Leonardo. Metro M2 Cadorna→Porta Genova (2,20 €). Ambientazo al atardecer.
+20:00|C|Cena junto al Naviglio|Risotto alla milanese|Risotto alla milanese o cotoletta. ~30 €/p. Vuelta en metro o paseo.
+`},
+{c:'Como',e:'⛵',t:'Lago de Como en barco',h:'09:00–21:00',q:'Lago di Como',s:`
+09:00|L|Coche de alquiler y A9 a Como||Recogida en Milano Centrale, ~45 min. Check-in con parking y paseo al embarcadero de Piazza Cavour.
+11:30|I|Ferry rápido a Tremezzo|Lago di Como|Hidrofoil entre villas históricas. ~14,80 €/p.
+12:20|I|Villa Carlotta|Villa Carlotta|Villa neoclásica, 8 ha de jardines y esculturas de Canova. 10–19 h, ~15 € (~8 € adolescentes).
+13:30|C|Almuerzo en el muelle de Tremezzo|Panino|Algo ligero junto al lago. ~10 €/p.
+14:15|O|Villa del Balbianello|Villa del Balbianello|Villa del XVIII en una península; salió en Star Wars y James Bond. ~12 €, reserva imprescindible.
+14:45|I|Bellagio, la perla del lago|Bellagio|Escalinatas de Salita Serbelloni, seda artesana y mirador de Punta Spartivento. Ferry de cruce ~4,60 €.
+17:30|I|Ferry de regreso al atardecer|Nesso Lago di Como|Barco tradicional por Nesso y Torno. ~10,40 €/p. Hora dorada.
+19:30|I|Duomo di Como|Duomo di Como|Templo gótico-renacentista de mármol blanco (exterior).
+20:00|C|Cena en el casco antiguo|Polenta concia|Risotto con persico o polenta concia. ~30 €/p.
+`},
+{c:'Verona',e:'💘',t:'Sirmione y Verona',h:'10:00–21:00',q:'Verona',s:`
+10:00|L|Coche Como → Sirmione||A4, ~150 km (≈1 h 45).
+11:45|I|Sirmione y Castello Scaligero|Rocca Scaligera Sirmione|Fortaleza del s. XIV rodeada por el Garda. Exterior libre, interior ~6 €. Comida al paso ~10–12 €/p.
+13:15|O|Grotte di Catullo|Grotte di Catullo|Enorme villa romana sobre el lago. ~8 €.
+14:30|L|Llegada a Verona||40 min. Alojamiento en Piazza Santa Anastasia; ojo con la ZTL (o Parcheggio Isolo).
+15:30|I|Iglesia de Santa Anastasia|Basilica di Sant'Anastasia Verona|Gótico dominico con el San Jorge de Pisanello. ~4 €.
+16:00|I|Arche Scaligere y Piazza dei Signori|Arche scaligere|Tumbas góticas de los señores de Verona (Cangrande I) con rejas de escaleras.
+16:45|I|Piazza delle Erbe y Casa de Julieta|Casa di Giulietta|Antiguo foro romano y torre dei Lamberti. Patio del balcón ~2 €, reserva online obligatoria.
+17:30|I|Porta Borsari y Arena de Verona|Arena di Verona|Anfiteatro romano del año 30 d.C., el mejor conservado. ~12 €.
+18:00|O|Giardino Giusti|Giardino Giusti|Jardín renacentista con laberinto de boj y vistas. ~10 €.
+18:30|I|Castelvecchio y Ponte Scaligero|Castelvecchio Verona|Fortaleza de ladrillo rojo y puente sobre el Adigio al atardecer.
+20:00|C|Cena en una osteria|Bigoli|Risotto all'Amarone o bigoli con pato. ~30 €/p.
+`},
+{c:'Padua → Venecia',e:'🚤',t:'Padua y llegada a Venecia',h:'10:00–21:00',q:'Venezia',s:`
+10:00|L|Coche Verona → Padua||A4, ~85 km (50 min).
+10:50|I|Prato della Valle y Basílica de San Antonio|Basilica di Sant'Antonio Padova|Plaza elíptica con 78 estatuas y el Santo con relieves de Donatello. Gratis.
+12:00|O|Capilla de los Scrovegni|Cappella degli Scrovegni|Frescos de Giotto (1303–05), cumbre del arte occidental. ~15 €, reserva con semanas de antelación.
+13:15|C|Almuerzo en Padua|Tramezzino|Tramezzino y Spritz paduano. ~10 €/p.
+14:30|L|Devolver coche y a Venecia||Entrega en Mestre; tren a Santa Lucia (~1,45 €) y vaporetto línea 1 a San Zaccaria (~9,50 €). Check-in cerca de San Marco.
+16:30|I|Piazza San Marco y Puente de los Suspiros|Piazza San Marco|Basílica, Campanile y Palazzo Ducale; luego el Ponte dei Sospiri.
+18:00|I|Rialto al atardecer|Ponte di Rialto|Callejeo por las calli y puesta de sol desde el puente de piedra.
+20:00|C|Cena veneciana|Risotto al nero di seppia|Bigoli in salsa o risotto al nero di seppia. ~30 €/p.
+`},
+{c:'Venecia',e:'🎭',t:'Venecia, sestieres y góndola',h:'09:00–21:00',q:'Venezia',s:`
+09:00|I|Palazzo Ducale|Palazzo Ducale Venezia|Sede del Dogo, con El Paraíso de Tintoretto. 09–19 h, ~30 € museos de San Marco, reserva imprescindible.
+11:30|I|Basílica de San Marcos|Basilica di San Marco|La Iglesia de Oro: 5 cúpulas y 8.000 m² de mosaicos. ~3 €.
+12:30|I|Castello y Libreria Acqua Alta|Libreria Acqua Alta|Librería con libros en góndolas y bañeras contra las mareas.
+13:30|C|Cicchetti en un bàcaro|Cicchetti|Cerca de Campo Santa Maria Formosa: baccalà mantecato y una ombra. ~10–12 €/p.
+14:30|I|Ponte di Rialto y mercados|Mercato di Rialto|El puente comercial más antiguo sobre el Gran Canal.
+15:15|I|Gueto Judío (Cannaregio)|Gueto de Venecia|Fundado en 1516, el primer gueto de la historia; de ahí los edificios altos.
+15:15|O|Fondaco dei Tedeschi (terraza)|Fondaco dei Tedeschi|Mirador 360° gratis, con reserva online obligatoria.
+16:30|I|Dorsoduro y Santa Maria della Salute|Basilica di Santa Maria della Salute|Barrio artístico con la basílica barroca de 1631.
+17:30|I|Squero di San Trovaso|Squero di San Trovaso|Astillero donde aún se hacen góndolas a mano.
+18:00|I|Paseo en góndola|Góndola Venecia|30 min por canales tranquilos y Gran Canal. Tarifa oficial 90 € por góndola (≈22 €/p).
+20:00|C|Cena en San Polo o Cannaregio|Fegato alla veneziana|Risotto al nero di seppia o fegato alla veneziana. ~30 €/p.
+`},
+{c:'Despedida',e:'✈️',t:'Mañana de despedida',h:'08:30–14:00',q:'Venezia',s:`
+08:30|O|Opción A: Murano|Murano|Los hornos de vidrio se trasladaron aquí en 1291. Demo en una fornace. Vaporetto desde San Zaccaria; vuelta 12:30.
+09:00|I|Opción B: Scala Contarini del Bovolo|Scala Contarini del Bovolo|Escalera de caracol gótico-renacentista con vistas a los tejados. ~8 €.
+09:45|I|Riva degli Schiavoni y Arsenale|Arsenale di Venezia|Arsenal naval más grande del s. XVI: montaba una galera en un día.
+12:30|C|Tramezzini de despedida|Tramezzino|Cerca de San Marco. ~10 €/p.
+14:00|L|Alilaguna al aeropuerto VCE||Línea Azul desde San Zaccaria, ~75 min, ~15 €/p. Recoged maletas antes (13:15).
+`}];
+const T={I:['🔥','Ineludible'],O:['⭐','Opcional'],C:['🍽️','Comer'],L:['🚆','Logística']},XP={I:10,O:5,C:3,L:1},
+LV=[[0,'🐣 Turista'],[80,'🧭 Explorador'],[200,'🗺️ Viajero'],[350,'👑 Leyenda']];
+let S={v:{},n:{},d:0};try{Object.assign(S,JSON.parse(localStorage.getItem('it26')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('it26',JSON.stringify(S))}catch(e){}},$=i=>document.getElementById(i);
+const P=D.map((d,di)=>({...d,st:d.s.trim().split('\n').map((l,i)=>{const[tm,t,n,q,x]=l.split('|');return{id:`d${di}s${i}`,tm,t,n,q,x:(x||'').trim()}})}));
+const memo={};
+function W(q){return memo[q]||(memo[q]=(async()=>{const k='w:'+q;try{const c=localStorage.getItem(k);if(c)return JSON.parse(c)}catch(e){}
+try{const j=await (await fetch('https://es.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrlimit=3&gsrsearch='+encodeURIComponent(q)+'&prop=pageimages|extracts|info&inprop=url&piprop=thumbnail&pithumbsize=800&exintro=1&explaintext=1&exlimit=3')).json();
+const p=Object.values(j.query.pages).sort((a,b)=>a.index-b.index),im=p.find(x=>x.thumbnail),ex=p.find(x=>x.extract&&x.extract.length>150),r={i:im&&im.thumbnail.source,x:ex&&ex.extract,u:ex&&ex.fullurl};
+try{localStorage.setItem(k,JSON.stringify(r))}catch(e){}return r}catch(e){delete memo[q];return{}}})())}
+const bg=(el,q)=>{if(q)W(q).then(r=>{if(r.i)el.style.backgroundImage=`url(${r.i})`,el.textContent=''})};
+function render(){const d=P[S.d];let all=0,dn=0,xp=0;P.forEach(p=>p.st.forEach(s=>{all++;if(S.v[s.id])dn++,xp+=XP[s.t]}));
+const lv=[...LV].reverse().find(l=>xp>=l[0]);$('lv').textContent=`${lv[1]} · ${xp} XP`;$('pb').style.width=(dn/all*100)+'%';
+$('tabs').innerHTML=P.map((p,i)=>{const ok=p.st.every(s=>S.v[s.id]);return`<button class="tab ${i==S.d?'on':''} ${ok?'ok':''}" data-d="${i}">${ok?'✅':p.e} Día ${i+1}<small>${p.c}</small></button>`}).join('');
+const dd=d.st.filter(s=>S.v[s.id]).length;
+$('hero').innerHTML=`<div class="hero" id="hb"><h2>${d.e} ${d.t}</h2><p>Día ${S.d+1} de 7</p><div class="chips"><span>🕒 ${d.h}</span><span>✅ ${dd}/${d.st.length}</span><span>💶 ~40 €/p</span></div></div>`;bg($('hb'),d.q);
+$('list').innerHTML=d.st.map(s=>{const t=T[s.t],dn=S.v[s.id],n=S.n[s.id]||'';return`<article class="card ${s.t.toLowerCase()} ${dn?'done':''}" data-id="${s.id}"><div class="ph" data-q="${s.q}">${t[0]}</div><div class="bd"><div class="tm">${s.tm} h</div><h3>${s.n}</h3><span class="tag">${t[0]} ${t[1]}</span><p>${s.x}</p><div class="act"><button class="v" data-a="v">${dn?'✓ ¡Hecho!':'Marcar visitado'}</button><button data-a="n">📝${n?' •':''}</button><button class="i" data-a="i">+ Info</button></div><textarea placeholder="Anotaciones, fotos que sacar, recuerdos…" class="${n?'show':''}">${n}</textarea></div></article>`}).join('');
+document.querySelectorAll('.ph').forEach(e=>bg(e,e.dataset.q))}
+function boom(x,y){for(let i=0;i<14;i++){const e=document.createElement('span');e.className='cf';e.textContent=['🎉','⭐','🔥','💚','❤️'][i%5];e.style.left=x+'px';e.style.top=y+'px';document.body.append(e);
+e.animate([{transform:'none',opacity:1},{transform:`translate(${(Math.random()-.5)*260}px,${-80-Math.random()*160}px) rotate(${Math.random()*360}deg)`,opacity:0}],{duration:900,easing:'ease-out'}).onfinish=()=>e.remove()}}
+function info(s){const t=T[s.t];$('sh').innerHTML=`<div class="ph" id="sp">${t[0]}</div><button class="x" data-a="x">✕</button><div class="bd"><span class="tag">${t[0]} ${t[1]}</span><h3>${s.n}</h3><div class="tm">${s.tm} h · ${P[S.d].c}</div><p class="wk">${s.x}</p><div class="sub">📖 Más información</div><div class="wk" id="wx">Cargando…</div><div class="lk"><a id="wl" target="_blank" rel="noopener" href="https://es.wikipedia.org/w/index.php?search=${encodeURIComponent(s.q||s.n)}">Wikipedia</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.n+' '+P[S.d].c)}">📍 Mapa</a></div><div class="cr">Fuente de foto y texto: Wikipedia (CC BY-SA).</div></div>`;
+$('ov').classList.add('on');$('sh').classList.add('on');$('sh').scrollTop=0;
+if(!s.q){$('wx').textContent='Sin información adicional para este punto logístico.';return}
+bg($('sp'),s.q);W(s.q).then(r=>{$('wx').textContent=r.x||'No se pudo cargar el texto ampliado (¿sin conexión?). Prueba con el botón de Wikipedia.';if(r.u)$('wl').href=r.u})}
+const close=()=>{$('ov').classList.remove('on');$('sh').classList.remove('on')};
+document.addEventListener('click',e=>{const tb=e.target.closest('.tab');if(tb){S.d=+tb.dataset.d;save();render();scrollTo(0,0);return}
+if(e.target.id=='ov'||e.target.dataset.a=='x')return close();const b=e.target.closest('[data-a]');if(!b)return;
+const c=b.closest('.card'),id=c.dataset.id,s=P[S.d].st.find(x=>x.id==id);
+if(b.dataset.a=='i')info(s);if(b.dataset.a=='n')c.querySelector('textarea').classList.toggle('show');
+if(b.dataset.a=='v'){S.v[id]=!S.v[id];if(S.v[id]){const r=b.getBoundingClientRect();boom(r.left+r.width/2,r.top)}else delete S.v[id];save();setTimeout(render,S.v[id]?450:0)}});
+document.addEventListener('input',e=>{if(e.target.tagName!='TEXTAREA')return;const id=e.target.closest('.card').dataset.id;if(e.target.value)S.n[id]=e.target.value;else delete S.n[id];save()});
+render();
+</script></body></html>
